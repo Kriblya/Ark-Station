@@ -91,7 +91,6 @@
 
 	#include "structures/sofa.dm"
 //	#include "structures/signs.dm"
-	#include "structures/thrusters.dm"
 	#include "structures/atmos.dm"
 	#include "structures/doors.dm"
 	#include "structures/navlights.dm"

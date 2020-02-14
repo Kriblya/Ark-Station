@@ -498,13 +498,12 @@
 /turf/simulated/floor/reinforced/airless,
 /area/shuttle/castelnau/prometeus/gas)
 "bj" = (
-/obj/machinery/atmospherics/unary/vent_pump/siphon{
-	dir = 4;
-	id_tag = "pro_gas_out";
-	pressure_checks = 2;
-	pressure_checks_default = 2
-	},
 /obj/machinery/air_sensor/prometeus/gas,
+/obj/machinery/atmospherics/unary/vent_pump/siphon/on/atmos/tank{
+	dir = 4;
+	icon_state = "map_vent_in";
+	id_tag = "pro_gas_out"
+	},
 /turf/simulated/floor/reinforced/airless,
 /area/shuttle/castelnau/prometeus/gas)
 "bk" = (
@@ -676,6 +675,7 @@
 "bH" = (
 /obj/effect/floor_decal/industrial/warning/corner,
 /obj/machinery/atmospherics/unary/outlet_injector{
+	frequency = 1441;
 	id = "pro_ano_in"
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
@@ -692,11 +692,6 @@
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 8
 	},
-/obj/machinery/atmospherics/unary/vent_pump/siphon{
-	id_tag = "pro_ano_out";
-	pressure_checks = 2;
-	pressure_checks_default = 2
-	},
 /obj/machinery/button/blast_door{
 	dir = 8;
 	id_tag = "perseus_secure_storage";
@@ -705,6 +700,13 @@
 	req_access = list("ACCESS_PROMETEUS")
 	},
 /obj/machinery/air_sensor/prometeus/anomaly,
+/obj/machinery/atmospherics/unary/vent_pump/siphon/on/atmos/tank{
+	external_pressure_bound = 101.3;
+	external_pressure_bound_default = 101.3;
+	id_tag = "pro_ano_out";
+	internal_pressure_bound = 101.3;
+	internal_pressure_bound_default = 101.3
+	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/castelnau/prometeus/anomaly)
 "bK" = (
@@ -719,6 +721,7 @@
 /area/shuttle/castelnau/prometeus/gas)
 "bM" = (
 /obj/machinery/atmospherics/unary/outlet_injector{
+	frequency = 1441;
 	id = "pro_gas_in"
 	},
 /turf/simulated/floor/reinforced/airless,
@@ -6461,7 +6464,7 @@
 	},
 /turf/simulated/floor/tiled,
 /area/castelnau/hallway/primary/thirddeck/aft)
-"lH" = (
+"lK" = (
 /obj/effect/floor_decal/industrial/warning/cee{
 	dir = 8
 	},
@@ -6473,7 +6476,7 @@
 	},
 /turf/simulated/floor/plating,
 /area/shuttle/castelnau/prometeus/hall)
-"lI" = (
+"lL" = (
 /obj/machinery/embedded_controller/radio/airlock/docking_port{
 	dir = 1;
 	frequency = 1331;
@@ -6497,7 +6500,7 @@
 	},
 /turf/simulated/floor/plating,
 /area/shuttle/castelnau/prometeus/hall)
-"lJ" = (
+"lM" = (
 /obj/effect/floor_decal/industrial/warning/cee{
 	dir = 4
 	},
@@ -6509,62 +6512,6 @@
 	},
 /turf/simulated/floor/plating,
 /area/shuttle/castelnau/prometeus/hall)
-"lK" = (
-/obj/effect/floor_decal/industrial/warning/cee{
-	dir = 8
-	},
-/obj/structure/catwalk,
-/obj/machinery/atmospherics/unary/vent_pump/high_volume/shuttle{
-	dir = 1;
-	icon_state = "map_vent";
-	id_tag = "prometeus_shuttle_dock_pump"
-	},
-/turf/simulated/floor/plating,
-/area/castelnau/hallway/primary/thirddeck/aft)
-"lL" = (
-/obj/effect/floor_decal/industrial/warning/cee{
-	dir = 4
-	},
-/obj/structure/catwalk,
-/obj/machinery/light/small,
-/obj/machinery/atmospherics/unary/vent_pump/high_volume/shuttle{
-	dir = 1;
-	icon_state = "map_vent";
-	id_tag = "prometeus_shuttle_dock_pump"
-	},
-/turf/simulated/floor/plating,
-/area/castelnau/hallway/primary/thirddeck/aft)
-"lM" = (
-/obj/effect/floor_decal/industrial/warning/cee{
-	dir = 1;
-	icon_state = "warningcee"
-	},
-/obj/structure/catwalk,
-/obj/machinery/airlock_sensor{
-	frequency = 1331;
-	id_tag = "calypso_shuttle_sensor";
-	pixel_x = -24
-	},
-/obj/machinery/atmospherics/unary/vent_pump/high_volume/shuttle{
-	dir = 4;
-	icon_state = "map_vent";
-	id_tag = "calypso_shuttle_pump"
-	},
-/turf/simulated/floor/plating,
-/area/shuttle/castelnau/prometeus/external)
-"lN" = (
-/obj/effect/floor_decal/industrial/warning/cee{
-	dir = 1;
-	icon_state = "warningcee"
-	},
-/obj/structure/catwalk,
-/obj/machinery/atmospherics/unary/vent_pump/high_volume/shuttle{
-	dir = 8;
-	icon_state = "map_vent";
-	id_tag = "calypso_shuttle_pump"
-	},
-/turf/simulated/floor/plating,
-/area/shuttle/castelnau/prometeus/external)
 "lO" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 8;
@@ -7146,40 +7093,30 @@
 /turf/simulated/floor/tiled/monotile,
 /area/castelnau/hallway/primary/thirddeck/aft)
 "mJ" = (
+/obj/effect/floor_decal/industrial/warning/cee{
+	dir = 8
+	},
 /obj/structure/catwalk,
-/obj/machinery/light/spot{
-	dir = 8
-	},
-/obj/effect/floor_decal/industrial/warning{
-	dir = 8
-	},
-/obj/effect/floor_decal/industrial/warning{
-	dir = 4;
-	icon_state = "warning"
-	},
 /obj/machinery/atmospherics/unary/vent_pump/high_volume/shuttle{
-	dir = 4;
+	dir = 1;
 	icon_state = "map_vent";
-	id_tag = "calypso_shuttle_pump"
+	id_tag = "prometeus_shuttle_dock_pump"
 	},
 /turf/simulated/floor/plating,
-/area/shuttle/castelnau/prometeus/external)
+/area/castelnau/hallway/primary/thirddeck/aft)
 "mK" = (
+/obj/effect/floor_decal/industrial/warning/cee{
+	dir = 4
+	},
 /obj/structure/catwalk,
-/obj/effect/floor_decal/industrial/warning{
-	dir = 8
-	},
-/obj/effect/floor_decal/industrial/warning{
-	dir = 4;
-	icon_state = "warning"
-	},
+/obj/machinery/light/small,
 /obj/machinery/atmospherics/unary/vent_pump/high_volume/shuttle{
-	dir = 8;
+	dir = 1;
 	icon_state = "map_vent";
-	id_tag = "calypso_shuttle_pump"
+	id_tag = "prometeus_shuttle_dock_pump"
 	},
 /turf/simulated/floor/plating,
-/area/shuttle/castelnau/prometeus/external)
+/area/castelnau/hallway/primary/thirddeck/aft)
 "mL" = (
 /obj/effect/paint_stripe/red,
 /turf/simulated/wall/r_titanium,
@@ -7823,27 +7760,20 @@
 /turf/simulated/floor/tiled/white/monotile,
 /area/shuttle/castelnau/prometeus/robotic)
 "nR" = (
+/obj/effect/floor_decal/industrial/warning/cee{
+	dir = 1;
+	icon_state = "warningcee"
+	},
 /obj/structure/catwalk,
-/obj/effect/floor_decal/industrial/warning{
-	dir = 8
-	},
-/obj/effect/floor_decal/industrial/warning{
-	dir = 4;
-	icon_state = "warning"
-	},
-/obj/machinery/embedded_controller/radio/airlock/airlock_controller{
-	cycle_to_external_air = 1;
-	dir = 4;
+/obj/machinery/airlock_sensor{
 	frequency = 1331;
-	id_tag = "calypso_shuttle";
-	pixel_x = -24;
-	req_access = list("ACCESS_PROMETEUS");
-	tag_exterior_sensor = "calypso_shuttle_sensor_exterior"
+	id_tag = "calypso_shuttle_sensor";
+	pixel_x = -24
 	},
 /obj/machinery/atmospherics/unary/vent_pump/high_volume/shuttle{
 	dir = 4;
 	icon_state = "map_vent";
-	id_tag = "calypso_shuttle_pump_out_internal"
+	id_tag = "calypso_shuttle_pump"
 	},
 /turf/simulated/floor/plating,
 /area/shuttle/castelnau/prometeus/external)
@@ -7861,28 +7791,15 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/castelnau/prometeus/external)
 "nU" = (
+/obj/effect/floor_decal/industrial/warning/cee{
+	dir = 1;
+	icon_state = "warningcee"
+	},
 /obj/structure/catwalk,
-/obj/machinery/power/apc{
-	dir = 4;
-	name = "east bump";
-	pixel_x = 24;
-	req_access = list("ACCESS_PROMETEUS")
-	},
-/obj/structure/cable/yellow{
-	d2 = 8;
-	icon_state = "0-8"
-	},
-/obj/effect/floor_decal/industrial/warning{
-	dir = 8
-	},
-/obj/effect/floor_decal/industrial/warning{
-	dir = 4;
-	icon_state = "warning"
-	},
 /obj/machinery/atmospherics/unary/vent_pump/high_volume/shuttle{
 	dir = 8;
 	icon_state = "map_vent";
-	id_tag = "calypso_shuttle_pump_out_internal"
+	id_tag = "calypso_shuttle_pump"
 	},
 /turf/simulated/floor/plating,
 /area/shuttle/castelnau/prometeus/external)
@@ -8501,12 +8418,21 @@
 /turf/simulated/floor/tiled/white/monotile,
 /area/shuttle/castelnau/prometeus/robotic)
 "oZ" = (
-/obj/effect/floor_decal/industrial/warning/cee,
 /obj/structure/catwalk,
+/obj/machinery/light/spot{
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/warning{
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/warning{
+	dir = 4;
+	icon_state = "warning"
+	},
 /obj/machinery/atmospherics/unary/vent_pump/high_volume/shuttle{
 	dir = 4;
 	icon_state = "map_vent";
-	id_tag = "calypso_shuttle_pump_out_internal"
+	id_tag = "calypso_shuttle_pump"
 	},
 /turf/simulated/floor/plating,
 /area/shuttle/castelnau/prometeus/external)
@@ -8524,17 +8450,24 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/castelnau/prometeus/external)
 "pc" = (
-/obj/effect/floor_decal/industrial/warning/cee,
 /obj/structure/catwalk,
+/obj/effect/floor_decal/industrial/warning{
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/warning{
+	dir = 4;
+	icon_state = "warning"
+	},
 /obj/machinery/atmospherics/unary/vent_pump/high_volume/shuttle{
 	dir = 8;
 	icon_state = "map_vent";
-	id_tag = "calypso_shuttle_pump_out_internal"
+	id_tag = "calypso_shuttle_pump"
 	},
 /turf/simulated/floor/plating,
 /area/shuttle/castelnau/prometeus/external)
 "pd" = (
 /obj/machinery/atmospherics/unary/outlet_injector{
+	frequency = 1441;
 	id = "pro_xenobot_in";
 	tag = ""
 	},
@@ -8556,15 +8489,16 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/castelnau/prometeus/botany)
 "pf" = (
-/obj/machinery/atmospherics/unary/vent_pump/siphon{
-	id_tag = "pro_xenobot_out";
-	pressure_checks = 2;
-	pressure_checks_default = 2;
-	tag = ""
-	},
 /obj/effect/floor_decal/industrial/warning{
 	dir = 1;
 	icon_state = "warning"
+	},
+/obj/machinery/atmospherics/unary/vent_pump/siphon/on/atmos/tank{
+	external_pressure_bound = 101.3;
+	external_pressure_bound_default = 101.3;
+	id_tag = "pro_xenobot_out";
+	internal_pressure_bound = 101.3;
+	internal_pressure_bound_default = 101.3
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/castelnau/prometeus/botany)
@@ -9039,26 +8973,29 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/castelnau/prometeus/robotic)
 "qc" = (
-/obj/effect/floor_decal/industrial/warning/full,
 /obj/structure/catwalk,
-/obj/machinery/airlock_sensor{
-	frequency = 1331;
-	id_tag = "calypso_shuttle_sensor_external";
-	pixel_x = -24
+/obj/effect/floor_decal/industrial/warning{
+	dir = 8
 	},
-/obj/machinery/access_button/airlock_interior{
+/obj/effect/floor_decal/industrial/warning{
+	dir = 4;
+	icon_state = "warning"
+	},
+/obj/machinery/embedded_controller/radio/airlock/airlock_controller{
+	cycle_to_external_air = 1;
+	dir = 4;
 	frequency = 1331;
-	master_tag = "calypso_shuttle";
-	pixel_x = -18;
-	pixel_y = 16;
-	req_access = list("ACCESS_PROMETEUS")
+	id_tag = "calypso_shuttle";
+	pixel_x = -24;
+	req_access = list("ACCESS_PROMETEUS");
+	tag_exterior_sensor = "calypso_shuttle_sensor_exterior"
 	},
 /obj/machinery/atmospherics/unary/vent_pump/high_volume/shuttle{
 	dir = 4;
 	icon_state = "map_vent";
-	id_tag = "calypso_shuttle_pump_out_external"
+	id_tag = "calypso_shuttle_pump_out_internal"
 	},
-/turf/simulated/floor/airless,
+/turf/simulated/floor/plating,
 /area/shuttle/castelnau/prometeus/external)
 "qd" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden{
@@ -9078,17 +9015,30 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/castelnau/prometeus/external)
 "qf" = (
-/obj/effect/floor_decal/industrial/warning/full,
 /obj/structure/catwalk,
-/obj/machinery/air_sensor{
-	id_tag = "calypso_out"
+/obj/machinery/power/apc{
+	dir = 4;
+	name = "east bump";
+	pixel_x = 24;
+	req_access = list("ACCESS_PROMETEUS")
+	},
+/obj/structure/cable/yellow{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/obj/effect/floor_decal/industrial/warning{
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/warning{
+	dir = 4;
+	icon_state = "warning"
 	},
 /obj/machinery/atmospherics/unary/vent_pump/high_volume/shuttle{
 	dir = 8;
 	icon_state = "map_vent";
-	id_tag = "calypso_shuttle_pump_out_external"
+	id_tag = "calypso_shuttle_pump_out_internal"
 	},
-/turf/simulated/floor/airless,
+/turf/simulated/floor/plating,
 /area/shuttle/castelnau/prometeus/external)
 "qg" = (
 /obj/effect/wallframe_spawn/reinforced,
@@ -9555,32 +9505,24 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/castelnau/prometeus/robotic)
 "qY" = (
-/obj/machinery/shipsensors,
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	controlled = 0;
-	dir = 1;
-	level = 2
-	},
-/obj/effect/floor_decal/industrial/warning/full,
-/obj/structure/navlight_shuttle{
-	dir = 1
-	},
-/turf/simulated/floor/airless,
-/area/shuttle/castelnau/bixie/cargo)
-"qZ" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	controlled = 0;
+/obj/effect/floor_decal/industrial/warning/cee,
+/obj/structure/catwalk,
+/obj/machinery/atmospherics/unary/vent_pump/high_volume/shuttle{
 	dir = 4;
-	level = 2
+	icon_state = "map_vent";
+	id_tag = "calypso_shuttle_pump_out_internal"
 	},
-/obj/effect/floor_decal/industrial/warning/full,
-/obj/structure/sign/warning/vent_port{
-	pixel_y = 28
+/turf/simulated/floor/plating,
+/area/shuttle/castelnau/prometeus/external)
+"qZ" = (
+/obj/effect/floor_decal/industrial/warning/cee,
+/obj/structure/catwalk,
+/obj/machinery/atmospherics/unary/vent_pump/high_volume/shuttle{
+	dir = 8;
+	icon_state = "map_vent";
+	id_tag = "calypso_shuttle_pump_out_internal"
 	},
-/turf/simulated/floor/airless,
+/turf/simulated/floor/plating,
 /area/shuttle/castelnau/prometeus/external)
 "ra" = (
 /obj/machinery/atmospherics/tvalve/mirrored,
@@ -10529,25 +10471,27 @@
 /turf/simulated/wall/r_titanium,
 /area/shuttle/castelnau/prometeus/external)
 "sR" = (
-/obj/machinery/embedded_controller/radio/airlock/docking_port{
-	dir = 1;
-	display_name = "Dock 3-D";
-	frequency = 1331;
-	id_tag = "rescue_shuttle_dock_airlock";
-	pixel_x = -26;
-	pixel_y = -24;
-	req_access = list("ACCESS_CASTELNAU_EXT_AL");
-	tag_airpump = "rescue_shuttle_dock_pump";
-	tag_chamber_sensor = "rescue_shuttle_dock_sensor";
-	tag_exterior_door = "rescue_shuttle_dock_outer";
-	tag_interior_door = "rescue_shuttle_dock_inner"
-	},
-/obj/machinery/atmospherics/pipe/manifold/hidden{
-	dir = 4
-	},
+/obj/effect/floor_decal/industrial/warning/full,
 /obj/structure/catwalk,
-/turf/simulated/floor/plating,
-/area/castelnau/maintenance/thirddeck/port)
+/obj/machinery/airlock_sensor{
+	frequency = 1331;
+	id_tag = "calypso_shuttle_sensor_external";
+	pixel_x = -24
+	},
+/obj/machinery/access_button/airlock_interior{
+	frequency = 1331;
+	master_tag = "calypso_shuttle";
+	pixel_x = -18;
+	pixel_y = 16;
+	req_access = list("ACCESS_PROMETEUS")
+	},
+/obj/machinery/atmospherics/unary/vent_pump/high_volume/shuttle{
+	dir = 4;
+	icon_state = "map_vent";
+	id_tag = "calypso_shuttle_pump_out_external"
+	},
+/turf/simulated/floor/airless,
+/area/shuttle/castelnau/prometeus/external)
 "sS" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden,
 /obj/effect/catwalk_plated/dark,
@@ -10565,20 +10509,18 @@
 /turf/simulated/floor/airless,
 /area/shuttle/castelnau/prometeus/external)
 "sU" = (
-/obj/machinery/airlock_sensor{
-	frequency = 1331;
-	id_tag = "rescue_shuttle_dock_sensor";
-	pixel_x = -28;
-	pixel_y = 6
-	},
+/obj/effect/floor_decal/industrial/warning/full,
 /obj/structure/catwalk,
-/obj/machinery/atmospherics/unary/vent_pump/high_volume/shuttle{
-	dir = 1;
-	icon_state = "map_vent";
-	id_tag = "rescue_shuttle_dock_pump"
+/obj/machinery/air_sensor{
+	id_tag = "calypso_out"
 	},
-/turf/simulated/floor/plating,
-/area/castelnau/maintenance/thirddeck/port)
+/obj/machinery/atmospherics/unary/vent_pump/high_volume/shuttle{
+	dir = 8;
+	icon_state = "map_vent";
+	id_tag = "calypso_shuttle_pump_out_external"
+	},
+/turf/simulated/floor/airless,
+/area/shuttle/castelnau/prometeus/external)
 "sV" = (
 /obj/machinery/atmospherics/portables_connector{
 	dir = 1
@@ -10791,6 +10733,19 @@
 /obj/effect/paint_stripe/brown,
 /turf/simulated/floor/plating,
 /area/shuttle/castelnau/bixie/power)
+"tn" = (
+/obj/machinery/shipsensors,
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	controlled = 0;
+	dir = 1;
+	level = 2
+	},
+/obj/effect/floor_decal/industrial/warning/full,
+/obj/structure/navlight_shuttle{
+	dir = 1
+	},
+/turf/simulated/floor/airless,
+/area/shuttle/castelnau/bixie/cargo)
 "to" = (
 /turf/simulated/wall/r_wall/hull,
 /area/castelnau/storage/cargo)
@@ -11017,6 +10972,26 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/castelnau/maintenance/thirddeck/port)
+"tM" = (
+/obj/machinery/embedded_controller/radio/airlock/docking_port{
+	dir = 1;
+	display_name = "Dock 3-D";
+	frequency = 1331;
+	id_tag = "rescue_shuttle_dock_airlock";
+	pixel_x = -26;
+	pixel_y = -24;
+	req_access = list("ACCESS_CASTELNAU_EXT_AL");
+	tag_airpump = "rescue_shuttle_dock_pump";
+	tag_chamber_sensor = "rescue_shuttle_dock_sensor";
+	tag_exterior_door = "rescue_shuttle_dock_outer";
+	tag_interior_door = "rescue_shuttle_dock_inner"
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden{
+	dir = 4
+	},
+/obj/structure/catwalk,
+/turf/simulated/floor/plating,
+/area/castelnau/maintenance/thirddeck/port)
 "tN" = (
 /obj/structure/table/standard,
 /obj/random/single{
@@ -11030,6 +11005,21 @@
 "tO" = (
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 8
+	},
+/turf/simulated/floor/airless,
+/area/shuttle/castelnau/prometeus/external)
+"tP" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	controlled = 0;
+	dir = 4;
+	level = 2
+	},
+/obj/effect/floor_decal/industrial/warning/full,
+/obj/structure/sign/warning/vent_port{
+	pixel_y = 28
 	},
 /turf/simulated/floor/airless,
 /area/shuttle/castelnau/prometeus/external)
@@ -11104,6 +11094,7 @@
 "tZ" = (
 /obj/machinery/atmospherics/unary/outlet_injector{
 	dir = 1;
+	frequency = 1441;
 	icon_state = "map_injector";
 	id = "pro_xenobio_in"
 	},
@@ -11322,6 +11313,21 @@
 /obj/structure/railing/mapped,
 /turf/space,
 /area/space)
+"uz" = (
+/obj/machinery/airlock_sensor{
+	frequency = 1331;
+	id_tag = "rescue_shuttle_dock_sensor";
+	pixel_x = -28;
+	pixel_y = 6
+	},
+/obj/structure/catwalk,
+/obj/machinery/atmospherics/unary/vent_pump/high_volume/shuttle{
+	dir = 1;
+	icon_state = "map_vent";
+	id_tag = "rescue_shuttle_dock_pump"
+	},
+/turf/simulated/floor/plating,
+/area/castelnau/maintenance/thirddeck/port)
 "uA" = (
 /obj/effect/floor_decal/industrial/warning,
 /obj/machinery/button/alternate/door/bolts{
@@ -11416,14 +11422,17 @@
 /turf/simulated/floor/reinforced,
 /area/shuttle/castelnau/prometeus/xen)
 "uK" = (
-/obj/machinery/atmospherics/unary/vent_pump/siphon{
-	dir = 1;
-	id_tag = "pro_xenobio_out";
-	pressure_checks = 2;
-	pressure_checks_default = 2
-	},
 /obj/effect/floor_decal/industrial/warning,
 /obj/machinery/air_sensor/prometeus/xenobiology,
+/obj/machinery/atmospherics/unary/vent_pump/siphon/on/atmos/tank{
+	dir = 1;
+	external_pressure_bound = 101.3;
+	external_pressure_bound_default = 101.3;
+	icon_state = "map_vent_in";
+	id_tag = "pro_xenobio_out";
+	internal_pressure_bound = 101.3;
+	internal_pressure_bound_default = 101.3
+	},
 /turf/simulated/floor/reinforced,
 /area/shuttle/castelnau/prometeus/xen)
 "uL" = (
@@ -18587,7 +18596,7 @@ pv
 qx
 rv
 sA
-qY
+tn
 aa
 aa
 aa
@@ -21172,9 +21181,9 @@ qI
 rH
 sM
 ts
-sR
+tM
 ug
-sU
+uz
 uM
 uU
 aa
@@ -21924,7 +21933,7 @@ iX
 jH
 kL
 jH
-lK
+mJ
 ic
 oI
 pN
@@ -22076,7 +22085,7 @@ iY
 jI
 kM
 jI
-lL
+mK
 ic
 oJ
 oJ
@@ -22531,7 +22540,7 @@ ie
 cR
 jL
 kO
-lH
+lK
 mL
 nC
 oK
@@ -22683,7 +22692,7 @@ if
 cR
 jM
 kP
-lI
+lL
 mL
 nD
 oL
@@ -22835,7 +22844,7 @@ ig
 cR
 jN
 kP
-lJ
+lM
 mL
 nE
 oM
@@ -25117,12 +25126,12 @@ jZ
 lb
 lZ
 mT
-lM
-mJ
 nR
 oZ
-sa
 qc
+qY
+sa
+sR
 tw
 sQ
 uj
@@ -25573,12 +25582,12 @@ ka
 le
 mc
 mW
-lN
-mK
 nU
 pc
-sa
 qf
+qZ
+sa
+sU
 tx
 tx
 tx
@@ -25732,7 +25741,7 @@ mS
 mS
 mS
 mS
-qZ
+tP
 tx
 uB
 uQ

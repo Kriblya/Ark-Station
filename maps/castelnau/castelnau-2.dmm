@@ -158,6 +158,7 @@
 "aw" = (
 /obj/machinery/atmospherics/unary/outlet_injector{
 	dir = 8;
+	frequency = 1441;
 	icon_state = "map_injector";
 	id = "chamber2_in";
 	pixel_y = 1;
@@ -167,12 +168,13 @@
 /turf/simulated/floor/reinforced/airless,
 /area/castelnau/thruster/d2starboard)
 "ax" = (
-/obj/machinery/atmospherics/unary/vent_pump/siphon/on/atmos{
-	dir = 4;
-	id_tag = "chamber2_out"
-	},
 /obj/machinery/air_sensor{
 	id_tag = "chamber2_sensor"
+	},
+/obj/machinery/atmospherics/unary/vent_pump/siphon/on/atmos/tank{
+	dir = 4;
+	icon_state = "map_vent_in";
+	id_tag = "chamber2_out"
 	},
 /turf/simulated/floor/reinforced/airless,
 /area/castelnau/thruster/d2starboard)
@@ -6564,20 +6566,20 @@
 /turf/simulated/floor/reinforced/nitrogen,
 /area/castelnau/engineering/atmos)
 "lf" = (
-/obj/machinery/atmospherics/unary/vent_pump/siphon/on/atmos{
+/obj/machinery/air_sensor/atmos/nitrogen,
+/obj/machinery/atmospherics/unary/vent_pump/siphon/on/atmos/tank{
 	id_tag = "n2_out"
 	},
-/obj/machinery/air_sensor/atmos/nitrogen,
 /turf/simulated/floor/reinforced/nitrogen,
 /area/castelnau/engineering/atmos)
 "lg" = (
 /turf/simulated/floor/reinforced/airmix,
 /area/castelnau/engineering/atmos)
 "lh" = (
-/obj/machinery/atmospherics/unary/vent_pump/siphon/on/atmos{
+/obj/machinery/air_sensor/atmos/air,
+/obj/machinery/atmospherics/unary/vent_pump/siphon/on/atmos/tank{
 	id_tag = "air_out"
 	},
-/obj/machinery/air_sensor/atmos/air,
 /turf/simulated/floor/reinforced/airmix,
 /area/castelnau/engineering/atmos)
 "li" = (
@@ -7160,13 +7162,15 @@
 /area/castelnau/supply/storage)
 "ma" = (
 /obj/machinery/atmospherics/unary/outlet_injector{
+	frequency = 1441;
 	id = "o2_in"
 	},
 /turf/simulated/floor/reinforced/oxygen,
 /area/castelnau/engineering/atmos)
 "mb" = (
-/obj/machinery/atmospherics/unary/vent_pump/siphon/on/atmos{
+/obj/machinery/atmospherics/unary/vent_pump/siphon/on/atmos/tank{
 	dir = 4;
+	icon_state = "map_vent_in";
 	id_tag = "o2_out"
 	},
 /turf/simulated/floor/reinforced/oxygen,
@@ -7186,6 +7190,7 @@
 /area/castelnau/engineering/atmos)
 "me" = (
 /obj/machinery/atmospherics/unary/outlet_injector{
+	frequency = 1441;
 	id = "n2_in"
 	},
 /turf/simulated/floor/reinforced/nitrogen,
@@ -7198,6 +7203,7 @@
 /area/castelnau/engineering/atmos)
 "mg" = (
 /obj/machinery/atmospherics/unary/outlet_injector{
+	frequency = 1441;
 	id = "air_in"
 	},
 /turf/simulated/floor/reinforced/airmix,
@@ -8646,6 +8652,8 @@
 	},
 /obj/machinery/atmospherics/unary/vent_pump/siphon{
 	dir = 1;
+	id_tag = "reac_out_1";
+	pressure_checks = 2;
 	pressure_checks_default = 2
 	},
 /turf/simulated/floor/reinforced,
@@ -8671,6 +8679,8 @@
 	},
 /obj/machinery/atmospherics/unary/vent_pump/siphon{
 	dir = 1;
+	id_tag = "reac_out_2";
+	pressure_checks = 2;
 	pressure_checks_default = 2
 	},
 /turf/simulated/floor/reinforced,
@@ -10273,6 +10283,7 @@
 	},
 /obj/machinery/computer/air_control{
 	dir = 8;
+	frequency = 1439;
 	input_tag = "reac_in_1";
 	name = "Circulation Pumps 1 Control";
 	output_tag = "reac_out_1";
@@ -10638,6 +10649,7 @@
 	},
 /obj/machinery/computer/air_control{
 	dir = 8;
+	id_tag = 1439;
 	input_tag = "reac_in_2";
 	name = "Circulation Pumps 2 Control";
 	output_tag = "reac_out_2";
@@ -11090,14 +11102,16 @@
 "ta" = (
 /obj/machinery/atmospherics/unary/outlet_injector{
 	dir = 1;
+	frequency = 1441;
 	icon_state = "map_injector";
 	id = "h2_in"
 	},
 /turf/simulated/floor/reinforced/hydrogen,
 /area/castelnau/engineering/atmos)
 "tb" = (
-/obj/machinery/atmospherics/unary/vent_pump/siphon/on/atmos{
+/obj/machinery/atmospherics/unary/vent_pump/siphon/on/atmos/tank{
 	dir = 4;
+	icon_state = "map_vent_in";
 	id_tag = "h2_out"
 	},
 /turf/simulated/floor/reinforced/hydrogen,
@@ -11118,33 +11132,37 @@
 "te" = (
 /obj/machinery/atmospherics/unary/outlet_injector{
 	dir = 1;
+	frequency = 1441;
 	icon_state = "map_injector";
 	id = "n2o_in"
 	},
 /turf/simulated/floor/reinforced/n20,
 /area/castelnau/engineering/atmos)
 "tf" = (
-/obj/machinery/atmospherics/unary/vent_pump/siphon/on/atmos{
+/obj/machinery/air_sensor/atmos/nitrous_oxide,
+/obj/machinery/atmospherics/unary/vent_pump/siphon/on/atmos/tank{
 	dir = 4;
+	icon_state = "map_vent_in";
 	id_tag = "n2o_out"
 	},
-/obj/machinery/air_sensor/atmos/nitrous_oxide,
 /turf/simulated/floor/reinforced/n20,
 /area/castelnau/engineering/atmos)
 "tg" = (
 /obj/machinery/atmospherics/unary/outlet_injector{
 	dir = 1;
+	frequency = 1441;
 	icon_state = "map_injector";
 	id = "co2_in"
 	},
 /turf/simulated/floor/reinforced/carbon_dioxide,
 /area/castelnau/engineering/atmos)
 "th" = (
-/obj/machinery/atmospherics/unary/vent_pump/siphon/on/atmos{
+/obj/machinery/air_sensor/atmos/carbon_dioxide,
+/obj/machinery/atmospherics/unary/vent_pump/siphon/on/atmos/tank{
 	dir = 4;
+	icon_state = "map_vent_in";
 	id_tag = "co2_out"
 	},
-/obj/machinery/air_sensor/atmos/carbon_dioxide,
 /turf/simulated/floor/reinforced/carbon_dioxide,
 /area/castelnau/engineering/atmos)
 "ti" = (
@@ -12137,6 +12155,7 @@
 "vj" = (
 /obj/machinery/atmospherics/unary/outlet_injector{
 	dir = 8;
+	frequency = 1441;
 	icon_state = "map_injector";
 	id = "chamber1_in";
 	pixel_y = 1;
@@ -12146,12 +12165,13 @@
 /turf/simulated/floor/reinforced/airless,
 /area/castelnau/thruster/d2port)
 "vk" = (
-/obj/machinery/atmospherics/unary/vent_pump/siphon/on/atmos{
-	dir = 4;
-	id_tag = "chamber1_out"
-	},
 /obj/machinery/air_sensor{
 	id_tag = "chamber1_sensor"
+	},
+/obj/machinery/atmospherics/unary/vent_pump/siphon/on/atmos/tank{
+	dir = 4;
+	icon_state = "map_vent_in";
+	id_tag = "chamber1_out"
 	},
 /turf/simulated/floor/reinforced/airless,
 /area/castelnau/thruster/d2port)
@@ -12198,6 +12218,14 @@
 /obj/effect/shuttle_landmark/merc/deck2,
 /turf/space,
 /area/space)
+"wV" = (
+/obj/machinery/alarm{
+	dir = 1;
+	pixel_y = -24;
+	req_access = list("ACCESS_CASTELNAU_ENGINEERING")
+	},
+/turf/simulated/floor/holofloor/tiled/dark,
+/area/castelnau/engineering/engine_room)
 
 (1,1,1) = {"
 aa
@@ -28394,7 +28422,7 @@ pB
 sf
 nw
 mt
-oy
+wV
 kz
 aj
 uE

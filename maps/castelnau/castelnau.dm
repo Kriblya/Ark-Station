@@ -25,6 +25,7 @@
 	#include "datums/programs/comm.dm"
 	#include "datums/programs/deck_management.dm"
 	#include "datums/programs/records.dm"
+	#include "datums/programs/supermatter_monitor.dm"
 
 	#include "items/cards_ids.dm"
 	#include "items/drinks.dm"
@@ -91,7 +92,6 @@
 
 	#include "structures/sofa.dm"
 //	#include "structures/signs.dm"
-	#include "structures/thrusters.dm"
 	#include "structures/atmos.dm"
 	#include "structures/doors.dm"
 	#include "structures/navlights.dm"

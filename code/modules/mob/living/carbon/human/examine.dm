@@ -50,8 +50,9 @@
 	if(!(skipjumpsuit && skipface))
 		var/species_name = "\improper "
 		if(is_synth && species.cyborg_noun)
-			species_name += "[species.cyborg_noun] "
-		species_name += "[species.name]"
+			species_name += "[species.cyborg_noun] [species.get_bodytype(src)]"
+		else
+			species_name += "[species.name]"
 		msg += ", <b><font color='[species.get_flesh_colour(src)]'>\a [species_name]!</font></b>[(user.can_use_codex() && SScodex.get_codex_entry(get_codex_value())) ?  SPAN_NOTICE(" \[<a href='?src=\ref[SScodex];show_examined_info=\ref[src];show_to=\ref[user]'>?</a>\]") : ""]"
 
 	var/extra_species_text = species.get_additional_examine_text(src)
@@ -326,6 +327,11 @@
 		if( findtext(pose,".",lentext(pose)) == 0 && findtext(pose,"!",lentext(pose)) == 0 && findtext(pose,"?",lentext(pose)) == 0 )
 			pose = addtext(pose,".") //Makes sure all emotes end with a period.
 		msg += "[T.He] [pose]\n"
+
+	if(!(skipjumpsuit && skipface)) //Spacesuits block smell
+		for(var/smell in smells_and_hygene) //Smells for hygene system
+			msg += "<span class='notice'>[smell]</span>\n"
+		msg += "<br>"
 
 	var/show_descs = show_descriptors_to(user)
 	if(show_descs)

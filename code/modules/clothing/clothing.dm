@@ -158,6 +158,12 @@
 	if(accessories.len > ties.len)
 		.+= ". <a href='?src=\ref[src];list_ungabunga=1'>\[See accessories\]</a>"
 
+/obj/item/clothing/examine(mob/user)
+	. = ..()
+	var/datum/extension/armor/ablative/armor_datum = get_extension(src, /datum/extension/armor/ablative)
+	if(istype(armor_datum) && LAZYLEN(armor_datum.get_visible_damage()))
+		to_chat(user, SPAN_WARNING("It has some <a href='?src=\ref[src];list_armor_damage=1'>damage</a>."))
+
 /obj/item/clothing/CanUseTopic(var/user)
 	if(user in view(get_turf(src)))
 		return STATUS_INTERACTIVE
@@ -169,6 +175,13 @@
 			for(var/accessory in accessories)
 				ties += "\icon[accessory] \a [accessory]"
 			to_chat(user, "Attached to \the [src] are [english_list(ties)].")
+		return TOPIC_HANDLED
+	if(href_list["list_armor_damage"])
+		var/datum/extension/armor/ablative/armor_datum = get_extension(src, /datum/extension/armor/ablative)
+		var/list/damages = armor_datum.get_visible_damage()
+		to_chat(user, "\The [src] \icon[src] has some damage:")
+		for(var/key in damages)
+			to_chat(user, "<li><b>[capitalize(damages[key])]</b> damage to the <b>[key]</b> armor.")
 		return TOPIC_HANDLED
 
 ///////////////////////////////////////////////////////////////////////
@@ -219,7 +232,6 @@ BLIND     // can't see anything
 		SPECIES_VOX = 'icons/mob/species/vox/onmob_eyes_vox.dmi',
 		SPECIES_VOX_ARMALIS = 'icons/mob/species/vox/onmob_eyes_vox_armalis.dmi',
 		SPECIES_UNATHI = 'icons/mob/species/unathi/generated/onmob_eyes_unathi.dmi',
-		SPECIES_RESOMI = 'code_ark/icons/mob/species/resomi/onmob_eyes_resomi.dmi',
 	)
 
 /obj/item/clothing/glasses/get_icon_state(mob/user_mob, slot)
@@ -256,7 +268,6 @@ BLIND     // can't see anything
 		SPECIES_VOX_ARMALIS = 'icons/mob/species/vox/onmob_hands_vox_armalis.dmi',
 		SPECIES_NABBER = 'icons/mob/species/nabber/onmob_hands_gas.dmi',
 		SPECIES_UNATHI = 'icons/mob/species/unathi/generated/onmob_hands_unathi.dmi',
-		SPECIES_RESOMI = 'code_ark/icons/mob/species/resomi/onmob_hands_resomi.dmi',
 		)
 	blood_overlay_type = "bloodyhands"
 
@@ -371,7 +382,6 @@ BLIND     // can't see anything
 		SPECIES_VOX = 'icons/mob/species/vox/onmob_head_vox.dmi',
 		SPECIES_VOX_ARMALIS = 'icons/mob/species/vox/onmob_head_vox_armalis.dmi',
 		SPECIES_UNATHI = 'icons/mob/species/unathi/generated/onmob_head_unathi.dmi',
-		SPECIES_RESOMI = 'code_ark/icons/mob/species/resomi/onmob_head_resomi.dmi',
 		)
 	blood_overlay_type = "helmetblood"
 
@@ -484,7 +494,6 @@ BLIND     // can't see anything
 		SPECIES_VOX = 'icons/mob/species/vox/onmob_mask_vox.dmi',
 		SPECIES_VOX_ARMALIS = 'icons/mob/species/vox/onmob_mask_vox_armalis.dmi',
 		SPECIES_UNATHI = 'icons/mob/species/unathi/generated/onmob_mask_unathi.dmi',
-		SPECIES_RESOMI = 'code_ark/icons/mob/species/resomi/onmob_mask_resomi.dmi',
 		)
 
 	var/voicechange = 0
@@ -568,7 +577,6 @@ BLIND     // can't see anything
 		SPECIES_VOX = 'icons/mob/species/vox/onmob_feet_vox.dmi',
 		SPECIES_VOX_ARMALIS = 'icons/mob/species/vox/onmob_feet_vox_armalis.dmi',
 		SPECIES_UNATHI = 'icons/mob/species/unathi/generated/onmob_feet_unathi.dmi',
-		SPECIES_RESOMI = 'code_ark/icons/mob/species/resomi/onmob_feet_resomi.dmi',
 		)
 	blood_overlay_type = "shoeblood"
 	var/overshoes = 0
@@ -664,7 +672,7 @@ BLIND     // can't see anything
 	if (I.w_class > hidden_item_max_w_class)
 		to_chat(user, SPAN_WARNING("\The [I] is too large to fit in the [src]."))
 		return
-	if (do_after(user, 2 SECONDS))
+	if (do_after(user, 1 SECONDS))
 		if(!user.unEquip(I, src))
 			return
 		user.visible_message(SPAN_ITALIC("\The [user] shoves \the [I] into \the [src]."), range = 1)
@@ -731,8 +739,7 @@ BLIND     // can't see anything
 		SPECIES_UNATHI = 'icons/mob/species/unathi/generated/onmob_suit_unathi.dmi',
 		SPECIES_NABBER = 'icons/mob/species/nabber/onmob_suit_gas.dmi',
 		SPECIES_MANTID_ALATE = 'icons/mob/species/mantid/onmob_suit_alate.dmi',
-		SPECIES_MANTID_GYNE = 'icons/mob/species/mantid/onmob_suit_gyne.dmi',
-		SPECIES_RESOMI = 'code_ark/icons/mob/species/resomi/onmob_suit_resomi.dmi',
+		SPECIES_MANTID_GYNE = 'icons/mob/species/mantid/onmob_suit_gyne.dmi'
 		)
 
 /obj/item/clothing/suit/update_clothing_icon()
@@ -789,8 +796,7 @@ BLIND     // can't see anything
 		SPECIES_NABBER = 'icons/mob/species/nabber/onmob_under_gas.dmi',
 		SPECIES_UNATHI = 'icons/mob/species/unathi/generated/onmob_under_unathi.dmi',
 		SPECIES_MANTID_ALATE = 'icons/mob/species/mantid/onmob_under_alate.dmi',
-		SPECIES_MANTID_GYNE = 'icons/mob/species/mantid/onmob_under_gyne.dmi',
-		SPECIES_RESOMI = 'code_ark/icons/mob/species/resomi/onmob_under_resomi.dmi',
+		SPECIES_MANTID_GYNE = 'icons/mob/species/mantid/onmob_under_gyne.dmi'
 	)
 
 	//convenience var for defining the icon state for the overlay used when the clothing is worn.

@@ -75,7 +75,12 @@
 		occupant.SetStasis(stasis)
 
 /obj/machinery/sleeper/on_update_icon()
-	icon_state = "sleeper_[occupant ? "1" : "0"]"
+	if(!occupant)
+		icon_state = "sleeper_0"
+	else if(stat & (BROKEN|NOPOWER))
+		icon_state = "sleeper_1"
+	else
+		icon_state = "sleeper_2"
 
 /obj/machinery/sleeper/DefaultTopicState()
 	return GLOB.outside_state
@@ -94,7 +99,7 @@
 		var/list/reagent = list()
 		reagent["name"] = T
 		if(occupant && occupant.reagents)
-			reagent["amount"] = occupant.reagents.get_reagent_amount(T)
+			reagent["amount"] = occupant.reagents.get_reagent_amount(available_chemicals[T])
 		reagents += list(reagent)
 	data["reagents"] = reagents.Copy()
 

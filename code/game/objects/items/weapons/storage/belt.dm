@@ -13,9 +13,6 @@
 	slot_flags = SLOT_BELT
 	var/overlay_flags
 	attack_verb = list("whipped", "lashed", "disciplined")
-	sprite_sheets = list(
-		SPECIES_RESOMI = 'code_ark/icons/mob/species/resomi/onmob_belt_resomi.dmi'
-		)
 
 /obj/item/weapon/storage/belt/verb/toggle_layer()
 	set name = "Switch Belt Layer"
@@ -65,7 +62,7 @@
 
 /obj/item/weapon/storage/belt/holster/Initialize()
 	. = ..()
-	set_extension(src, /datum/extension/holster, /datum/extension/holster, src, sound_in, sound_out, can_holster)
+	set_extension(src, /datum/extension/holster, src, sound_in, sound_out, can_holster)
 
 /obj/item/weapon/storage/belt/holster/attackby(obj/item/W as obj, mob/user as mob)
 	var/datum/extension/holster/H = get_extension(src, /datum/extension/holster)

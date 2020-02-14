@@ -5,7 +5,6 @@
 		SPECIES_VOX = 'icons/mob/species/vox/onmob_eyes_vox.dmi',
 		SPECIES_VOX_ARMALIS = 'icons/mob/species/vox/onmob_eyes_vox_armalis.dmi',
 		SPECIES_UNATHI = 'icons/mob/species/unathi/generated/onmob_eyes_unathi.dmi',
-		SPECIES_RESOMI = 'code_ark/icons/mob/species/resomi/onmob_eyes_resomi.dmi'
 		)
 	var/hud_type
 	var/prescription = FALSE
@@ -16,12 +15,14 @@
 	var/obj/screen/overlay = null
 	var/obj/item/clothing/glasses/hud/hud = null	// Hud glasses, if any
 	var/electric = FALSE //if the glasses should be disrupted by EMP
-	
+
 	var/toggle_on_message //set these in initialize if you want messages other than about the optical matrix
 	var/toggle_off_message
 
 /obj/item/clothing/glasses/Initialize()
 	. = ..()
+	if(toggleable)
+		set_extension(src, /datum/extension/base_icon_state, icon_state)
 	if(ispath(hud))
 		hud = new hud(src)
 
@@ -52,6 +53,7 @@
 
 /obj/item/clothing/glasses/attack_self(mob/user)
 	if(toggleable && !user.incapacitated())
+		var/datum/extension/base_icon_state/BIS = get_extension(src, /datum/extension/base_icon_state)
 		if(active)
 			active = FALSE
 			icon_state = off_state
@@ -64,7 +66,7 @@
 				to_chat(user, "You deactivate the optical matrix on \the [src].")
 		else
 			active = TRUE
-			icon_state = initial(icon_state)
+			icon_state = BIS.base_icon_state
 			user.update_inv_glasses()
 			if(activation_sound)
 				sound_to(user, activation_sound)
@@ -77,6 +79,14 @@
 		update_clothing_icon()
 		update_vision()
 		user.update_action_buttons()
+
+/obj/item/clothing/glasses/inherit_custom_item_data(datum/custom_item/citem)
+	. = ..()
+	if(toggleable)
+		if(citem.additional_data["icon_on"])
+			set_icon_state(citem.additional_data["icon_on"])
+		if(citem.additional_data["icon_off"])
+			off_state = citem.additional_data["icon_off"]
 
 /obj/item/clothing/glasses/meson
 	name = "optical meson scanner"

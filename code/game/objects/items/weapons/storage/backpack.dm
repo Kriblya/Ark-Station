@@ -20,16 +20,13 @@
 	w_class = ITEM_SIZE_HUGE
 	slot_flags = SLOT_BACK
 	max_w_class = ITEM_SIZE_LARGE
-	sprite_sheets = list(
-		SPECIES_RESOMI = 'code_ark/icons/mob/species/resomi/onmob_back_resomi.dmi'
-		)
 
 	max_storage_space = DEFAULT_BACKPACK_STORAGE
 	open_sound = 'sound/effects/storage/unzip.ogg'
 
 /obj/item/weapon/storage/backpack/equipped()
 	if(!has_extension(src, /datum/extension/appearance))
-		set_extension(src, /datum/extension/appearance, /datum/extension/appearance/cardborg)
+		set_extension(src, /datum/extension/appearance/cardborg)
 	..()
 
 /obj/item/weapon/storage/backpack/attackby(obj/item/weapon/W as obj, mob/user as mob)

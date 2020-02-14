@@ -6,8 +6,7 @@
 SUBSYSTEM_DEF(throwing)
 	name = "Throwing"
 	wait = 1
-	flags = SS_NO_INIT|SS_KEEP_TIMING|SS_TICKER
-	runlevels = RUNLEVEL_GAME | RUNLEVEL_POSTGAME
+	flags = SS_NO_INIT|SS_KEEP_TIMING
 
 	var/list/currentrun
 	var/list/processing = list()
@@ -114,7 +113,7 @@ SUBSYSTEM_DEF(throwing)
 		delayed_time += world.time - last_move
 		return
 
-	if (dist_travelled && hitcheck()) //to catch sneaky things moving on our tile while we slept
+	if (dist_travelled && hitcheck(get_turf(thrownthing))) //to catch sneaky things moving on our tile while we slept
 		finalize()
 		return
 
@@ -144,6 +143,10 @@ SUBSYSTEM_DEF(throwing)
 			finalize()
 			return
 
+		if (hitcheck(step))
+			finalize()
+			return
+
 		AM.Move(step, get_dir(AM, step))
 
 		if (!AM.throwing) // we hit something during our move
@@ -158,10 +161,10 @@ SUBSYSTEM_DEF(throwing)
 
 		A = get_area(AM.loc)
 
-/datum/thrownthing/proc/finalize(hit = FALSE, target=null)
+/datum/thrownthing/proc/finalize(hit = FALSE, t_target=null)
 	set waitfor = FALSE
 	//done throwing, either because it hit something or it finished moving
-	if(!thrownthing)
+	if(QDELETED(thrownthing))
 		return
 	thrownthing.throwing = null
 	if (!hit)
@@ -178,8 +181,8 @@ SUBSYSTEM_DEF(throwing)
 		var/mob/M = thrownthing
 		M.inertia_dir = init_dir
 
-	if(target)
-		thrownthing.throw_impact(target, src)
+	if(t_target)
+		thrownthing.throw_impact(t_target, src)
 
 	if (callback)
 		callback.Invoke()
@@ -189,13 +192,13 @@ SUBSYSTEM_DEF(throwing)
 	qdel(src)
 
 /datum/thrownthing/proc/hit_atom(atom/A)
-	finalize(hit=TRUE, target=A)
+	finalize(hit=TRUE, t_target=A)
 
-/datum/thrownthing/proc/hitcheck()
-	for (var/thing in get_turf(thrownthing))
+/datum/thrownthing/proc/hitcheck(var/turf/T)
+	for (var/thing in T)
 		var/atom/movable/AM = thing
 		if (AM == thrownthing || (AM == thrower && !ismob(thrownthing)))
 			continue
 		if (AM.density && !(AM.throwpass))//check if ATOM_FLAG_CHECKS_BORDER as an atom_flag is needed
-			finalize(hit=TRUE, target=AM)
+			finalize(hit=TRUE, t_target=AM)
 			return TRUE

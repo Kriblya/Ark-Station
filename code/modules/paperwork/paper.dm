@@ -21,9 +21,6 @@
 	slot_flags = SLOT_HEAD
 	body_parts_covered = HEAD
 	attack_verb = list("bapped")
-	sprite_sheets = list(
-		SPECIES_RESOMI = 'code_ark/icons/mob/species/resomi/onmob_head_resomi.dmi'
-		)
 
 	var/info		//What's actually written on the paper.
 	var/info_links	//A different version of the paper which includes html links at fields and EOF
@@ -288,24 +285,28 @@
 		if(!t)
 			return
 
-		var/obj/item/i = usr.get_active_hand() // Check to see if he still got that darn pen, also check what type of pen
+		var/obj/item/I = usr.get_active_hand() // Check to see if he still got that darn pen, also check what type of pen
 		var/iscrayon = 0
 		var/isfancy = 0
-		if(!istype(i, /obj/item/weapon/pen))
+		if(!istype(I, /obj/item/weapon/pen))
 			if(usr.back && istype(usr.back,/obj/item/weapon/rig))
 				var/obj/item/weapon/rig/r = usr.back
 				var/obj/item/rig_module/device/pen/m = locate(/obj/item/rig_module/device/pen) in r.installed_modules
 				if(!r.offline && m)
-					i = m.device
+					I = m.device
 				else
 					return
 			else
 				return
 
-		if(istype(i, /obj/item/weapon/pen/crayon))
+		var/obj/item/weapon/pen/P = I
+		if(!P.pen_usable(usr))
+			return
+
+		if(P.iscrayon)
 			iscrayon = 1
 
-		if(istype(i, /obj/item/weapon/pen/fancy))
+		if(P.isfancy)
 			isfancy = 1
 
 
@@ -315,7 +316,7 @@
 
 		var/last_fields_value = fields
 
-		t = parsepencode(t, i, usr, iscrayon, isfancy) // Encode everything from pencode to html
+		t = parsepencode(t, I, usr, iscrayon, isfancy) // Encode everything from pencode to html
 
 
 		if(fields > MAX_FIELDS)

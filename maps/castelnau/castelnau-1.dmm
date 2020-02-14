@@ -7311,6 +7311,9 @@
 /obj/effect/floor_decal/industrial/loading,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/effect/landmark{
+	name = "JoinLateCryoPrometeus"
+	},
 /turf/simulated/floor/tiled/monotile,
 /area/shuttle/castelnau/prometeus/dorm)
 "ni" = (
@@ -7921,6 +7924,9 @@
 "og" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/effect/landmark{
+	name = "JoinLateCryoPrometeus"
+	},
 /turf/simulated/floor/tiled/monotile,
 /area/shuttle/castelnau/prometeus/dorm)
 "oh" = (

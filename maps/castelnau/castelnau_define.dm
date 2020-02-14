@@ -19,7 +19,7 @@ GLOBAL_LIST_INIT(castelnay_command, list("Captain"))
 							 "freemail.net"
 							 )
 
-	allowed_spawns = list("Cryogenic Storage")
+	allowed_spawns = list("Cryogenic Storage", "Prometeus Cryogenic Storage")
 	default_spawn = "Cryogenic Storage"
 
 	station_name  = "MOTV Castelnau"
